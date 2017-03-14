@@ -1837,7 +1837,7 @@ emu-issue, emu-todo, emu-motivation, emu-my-example, emu-integration-plans {
 <emu-clause id="sec-numeric-types">
   <h1><span class="secnum">1</span>Numeric Types</h1>
   <emu-issue>This specification introduces a protocol to help describe overloading of built-in operators to work on both Numbers and Integers. An  <a href="https://github.com/littledan/proposal-integer/issues/12">alternative</a> would be to simply inline the new Integer definition alongside the old Number definition in an ad-hoc way.</emu-issue>
-  <p>ECMAScript has two built-in numeric types: Number two Integer. In this specification, every numeric type <var>T</var> contains an additive identity value denoted <var>T</var>::zero and a multiplicative identity value denoted <var>T</var>::unit. The specification types also have the following abstract operations, likewise denoted <var>T</var>::<i>op</i> for a given operation with specification name  <i>op</i>. Unless noted otherwise, argument and result types are all <var>T</var>.</p>
+  <p>ECMAScript has two built-in numeric types: Number two Integer. In this specification, every numeric type <var>T</var> contains an additive identity value denoted <var>T</var>::additiveZero and a multiplicative identity value denoted <var>T</var>::unit. The specification types also have the following abstract operations, likewise denoted <var>T</var>::<i>op</i> for a given operation with specification name  <i>op</i>. Unless noted otherwise, argument and result types are all <var>T</var>.</p>
   <emu-table id="table-numeric-type-ops" caption="Numeric Type Operations"><figure><figcaption>Table 1: Numeric Type Operations</figcaption>
     <table>
       <tbody>
@@ -2035,8 +2035,9 @@ emu-issue, emu-todo, emu-motivation, emu-my-example, emu-integration-plans {
       </tbody>
     </table>
   </figure></emu-table>
-  <p>The <var>T</var>::zero value, <var>T</var>::unit value, and <var>T</var>::<var>op</var> operations are not a part of the ECMAScript language; they are defined here solely to aid the specification of the semantics of the ECMAScript language. Other abstract operations are defined throughout this specification.</p>
+  <p>The <var>T</var>::additiveZero value, <var>T</var>::unit value, and <var>T</var>::<var>op</var> operations are not a part of the ECMAScript language; they are defined here solely to aid the specification of the semantics of the ECMAScript language. Other abstract operations are defined throughout this specification.</p>
   <p>Because the numeric types are in general not interconvertible without loss of precision or truncation, the ECMAScript language provides no implicit conversion among these types. Programmers must explicitly call <code>Number</code> and <code>Integer</code> functions to convert among types when calling a function which requires another type.</p>
+  <emu-integration-plans>Number::additiveZero is <emu-val>-0</emu-val>.</emu-integration-plans>
   <emu-note><span class="note">Note</span><div class="note-contents">
    <p>The first and subsequent editions of ECMAScript have provided, for certain operators, implicit numeric conversions that could lose precision or truncate. These legacy implicit conversions are maintained for backward compatibility, but not provided for Integer in order to minimize opportunity for programmer error, and to leave open the option of generalized  <em>value types</em> in a future edition.</p>
   </div></emu-note>
@@ -2046,7 +2047,7 @@ emu-issue, emu-todo, emu-motivation, emu-my-example, emu-integration-plans {
    <h1><span class="secnum">1.1</span>The Integer Type</h1>
    <p>The Integer type represents a mathematical integer value. The value may be any size and is not limited to a particular bit-width. Generally, where not otherwise noted, operations are designed to return exact mathematically-based answers. For binary operations, Integers act as two's complement binary strings, with negative numbers treated as having bits set infinitely to the left.</p>
 
-   <p>The Integer::zero value is <emu-val>0n</emu-val>.</p>
+   <p>The Integer::additiveZero value is <emu-val>0n</emu-val>.</p>
    <p>The Integer::unit value is <emu-val>1n</emu-val>.</p>
 
     <emu-clause id="sec-numeric-types-integer-unaryMinus">
@@ -2654,7 +2655,7 @@ emu-issue, emu-todo, emu-motivation, emu-my-example, emu-integration-plans {
         <emu-grammar><emu-production name="UnaryExpression" collapsed="">
     <emu-nt><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt><emu-geq>:</emu-geq><emu-rhs a="a03cca5c"><emu-t>-</emu-t><emu-nt id="_ref_276"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt></emu-rhs>
 </emu-production></emu-grammar>
-        <emu-alg><ol><li>Let <var>expr</var> be the result of evaluating <emu-nt id="_ref_277"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>.</li><li>Let <var>oldValue</var> be ? <del><emu-xref aoid="ToNumber" id="_ref_134"><a href="#sec-tonumber">ToNumber</a></emu-xref></del><ins><emu-xref aoid="ToNumeric" id="_ref_135"><a href="#sec-tonumeric">ToNumeric</a></emu-xref></ins>(? <emu-xref aoid="GetValue" id="_ref_136"><a href="https://tc39.github.io/ecma262/#sec-getvalue">GetValue</a></emu-xref>(<var>expr</var>)).</li><li><del>If <var>oldValue</var> is <emu-val>NaN</emu-val>, return <emu-val>NaN</emu-val>.</del></li><li><del>Return the result of negating <var>oldValue</var>; that is, compute a Number with the same magnitude but opposite sign.</del></li><li><ins>Let <var>T</var> be <emu-xref aoid="Type" id="_ref_137"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>oldValue</var>).</ins></li><li>Return ? <var>T</var>::minus(<var>T</var>::zero, <var>oldValue</var>).
+        <emu-alg><ol><li>Let <var>expr</var> be the result of evaluating <emu-nt id="_ref_277"><a href="#prod-UnaryExpression">UnaryExpression</a></emu-nt>.</li><li>Let <var>oldValue</var> be ? <del><emu-xref aoid="ToNumber" id="_ref_134"><a href="#sec-tonumber">ToNumber</a></emu-xref></del><ins><emu-xref aoid="ToNumeric" id="_ref_135"><a href="#sec-tonumeric">ToNumeric</a></emu-xref></ins>(? <emu-xref aoid="GetValue" id="_ref_136"><a href="https://tc39.github.io/ecma262/#sec-getvalue">GetValue</a></emu-xref>(<var>expr</var>)).</li><li><del>If <var>oldValue</var> is <emu-val>NaN</emu-val>, return <emu-val>NaN</emu-val>.</del></li><li><del>Return the result of negating <var>oldValue</var>; that is, compute a Number with the same magnitude but opposite sign.</del></li><li><ins>Let <var>T</var> be <emu-xref aoid="Type" id="_ref_137"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>oldValue</var>).</ins></li><li>Return ? <var>T</var>::minus(<var>T</var>::additiveZero, <var>oldValue</var>).
         </li></ol></emu-alg>
       </emu-clause>
     </emu-clause>
