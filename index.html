@@ -2159,7 +2159,7 @@ emu-issue, emu-todo, emu-motivation, emu-my-example, emu-integration-plans {
 
     <emu-clause id="sec-bitwise-op">
       <h1><span class="secnum">1.1.16</span>BitwiseOp(<var>op</var>, <var>x</var>, <var>y</var>)</h1>
-      <emu-alg><ol><li>Let <var>result</var> be 0.</li><li>Let <var>shift</var> be 0.</li><li>Repeat, until (<var>x</var> = 0 or <var>x</var> = -1) and (<var>y</var> = 0 or <var>y</var> = -1),<ol><li>Let <var>xDigit</var> be <var>x</var> <emu-xref aoid="modulo"><a href="https://tc39.github.io/ecma262/#sec-algorithm-conventions">modulo</a></emu-xref> 2.</li><li>Let <var>yDigit</var> be <var>y</var> <emu-xref aoid="modulo"><a href="https://tc39.github.io/ecma262/#sec-algorithm-conventions">modulo</a></emu-xref> 2.</li><li>Let <var>result</var> be result + 2<sup><var>shift</var></sup> * op(<var>xDigit</var>, <var>yDigit</var>)</li><li>Let <var>shift</var> be <var>shift</var> + 1.</li><li>Let <var>x</var> be (<var>x</var> - <var>xDigit</var>) / 2.</li><li>Let <var>y</var> be (<var>y</var> - <var>yDigit</var>) / 2.</li></ol></li><li>If <var>op</var>(<var>x</var> <emu-xref aoid="modulo"><a href="https://tc39.github.io/ecma262/#sec-algorithm-conventions">modulo</a></emu-xref> 2, <var>y</var> <emu-xref aoid="modulo"><a href="https://tc39.github.io/ecma262/#sec-algorithm-conventions">modulo</a></emu-xref> 2) ≠ 0,<ol><li>Let <var>reuslt</var> be <var>result</var> - 2<sup><var>shift</var></sup>. NOTE: This extends the sign.</li></ol></li><li>Return <var>result</var>.
+      <emu-alg><ol><li>Let <var>result</var> be 0.</li><li>Let <var>shift</var> be 0.</li><li>Repeat, until (<var>x</var> = 0 or <var>x</var> = -1) and (<var>y</var> = 0 or <var>y</var> = -1),<ol><li>Let <var>xDigit</var> be <var>x</var> <emu-xref aoid="modulo"><a href="https://tc39.github.io/ecma262/#sec-algorithm-conventions">modulo</a></emu-xref> 2.</li><li>Let <var>yDigit</var> be <var>y</var> <emu-xref aoid="modulo"><a href="https://tc39.github.io/ecma262/#sec-algorithm-conventions">modulo</a></emu-xref> 2.</li><li>Let <var>result</var> be result + 2<sup><var>shift</var></sup> * op(<var>xDigit</var>, <var>yDigit</var>)</li><li>Let <var>shift</var> be <var>shift</var> + 1.</li><li>Let <var>x</var> be (<var>x</var> - <var>xDigit</var>) / 2.</li><li>Let <var>y</var> be (<var>y</var> - <var>yDigit</var>) / 2.</li></ol></li><li>If <var>op</var>(<var>x</var> <emu-xref aoid="modulo"><a href="https://tc39.github.io/ecma262/#sec-algorithm-conventions">modulo</a></emu-xref> 2, <var>y</var> <emu-xref aoid="modulo"><a href="https://tc39.github.io/ecma262/#sec-algorithm-conventions">modulo</a></emu-xref> 2) ≠ 0,<ol><li>Let <var>result</var> be <var>result</var> - 2<sup><var>shift</var></sup>. NOTE: This extends the sign.</li></ol></li><li>Return <var>result</var>.
       </li></ol></emu-alg>
     </emu-clause>
 
@@ -2177,7 +2177,7 @@ emu-issue, emu-todo, emu-motivation, emu-my-example, emu-integration-plans {
 
     <emu-clause id="sec-numeric-types-integer-bitwiseOR">
       <h1><span class="secnum">1.1.19</span>Integer::bitwiseOR (<var>x</var>, <var>y</var>)</h1>
-      <emu-alg><ol><li>Return BitwiseOp(<code>|</code> <var>x</var>, <var>y</var>).
+      <emu-alg><ol><li>Return BitwiseOp(<code>|</code>, <var>x</var>, <var>y</var>).
       </li></ol></emu-alg>
     </emu-clause>
   </emu-clause>
