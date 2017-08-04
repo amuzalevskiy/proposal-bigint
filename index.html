@@ -2818,7 +2818,7 @@ emu-issue, emu-todo, emu-motivation, emu-my-example, emu-integration-plans {
 
       <emu-clause id="sec-number-to-bigint" aoid="NumberToBigInt">
         <h1><span class="secnum">5.1.2</span>NumberToBigInt ( <var>number</var> )</h1>
-        <emu-alg><ol><li>Assert: <emu-xref aoid="Type" id="_ref_233"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>number</var>) is Number.</li><li>If <emu-xref aoid="IsSafeInteger" id="_ref_234"><a href="#sec-is-safe-integer">IsSafeInteger</a></emu-xref>(<var>number</var>) is <emu-val>false</emu-val>, throw a <emu-val>RangeError</emu-val> exception.</li><li>Let <var>int</var> be the mathematical value that is the same sign as <var>number</var> and whose magnitude is <emu-xref aoid="floor"><a href="https://tc39.github.io/ecma262/#sec-algorithm-conventions">floor</a></emu-xref>(<emu-xref aoid="abs"><a href="https://tc39.github.io/ecma262/#sec-algorithm-conventions">abs</a></emu-xref>(<var>number</var>)).</li><li>Return a BigInt value representing <var>int</var>.
+        <emu-alg><ol><li>Assert: <emu-xref aoid="Type" id="_ref_233"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>number</var>) is Number.</li><li>If <emu-xref aoid="IsSafeInteger" id="_ref_234"><a href="#sec-is-safe-integer">IsSafeInteger</a></emu-xref>(<var>number</var>) is <emu-val>false</emu-val>, throw a <emu-val>RangeError</emu-val> exception.</li><li>Return a BigInt value representing the mathematical value of <var>number</var>.
         </li></ol></emu-alg>
       </emu-clause>
 
